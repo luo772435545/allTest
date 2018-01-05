@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{width: 60px;height: 60px;background-color: rosybrown;margin: 10px;}
+    </style>
+</head>
+<body>
+<ul id="oid">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+</ul>
+<script>
+    class dep {
+        constructor(obj){
+            this.nub=0;//转动次数
+            this.minNub=3;//最小转多少圈
+            this.speed=100;//速度
+            this.index=-1;//当前哪个
+            this.zhong=obj.zhong || 4;//中的位置
+            this.timer=0;//setTimeOut timer
+            this.all=document.getElementById('oid').getElementsByTagName('li').length; //奖
+            this.dom=document.getElementById('oid').getElementsByTagName('li'),
+                this.speedEnd=300;//最后
+        }
+        init(){
+            this.zhong>this.all?this.zhong=this.all:'';
+            this.roll();
+        }
+        roll(){
+            let _this=clcl;
+            _this.nub++;
+            clearTimeout(_this.timer);
+            _this.nub>(_this.minNub*_this.all)?_this.speed+=_this.speedEnd:'';
+            if(_this.nub-_this.minNub*_this.all>_this.zhong){
+                return false;
+            }
+            _this.index>=_this.dom.length-1?_this.index=0:_this.index+=1;
+            for(let i=0;i<clcl.dom.length;i++){
+                _this.dom[i].style.backgroundColor='rosybrown';
+            }
+            _this.dom[_this.index].style.backgroundColor='bisque';
+            _this.timer=setTimeout(clcl.roll,_this.speed)
+        }
+    }
+    var clcl=new dep({
+        zhong:5
+    });
+    clcl.init();
+</script>
+</body>
+</html>
