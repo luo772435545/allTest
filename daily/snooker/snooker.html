@@ -59,14 +59,13 @@
 		canvas.addEventListener("touchstart" , function(){
 			var stop = false;
 			balls.foreach(function(){
-				if(this.moving && !this.inhole) stop = true;;
+				if(this.moving && !this.inhole) stop = true;
 			});
 			if(stop) return;
 			document.querySelector(".shotPower").style.display = "block";
 			document.querySelector(".shotPower").style.top = balls[0].y-60 + "px";
 			document.querySelector(".shotPower").style.left = balls[0].x-40 +"px";
 			document.getElementById("pow").className = "animate";
-
 			var touch = event.targetTouches[0];
 			var x = touch.pageX + document.body.scrollLeft + document.documentElement.scrollLeft - document.querySelector(".view").offsetLeft;
 			var y = touch.pageY + document.body.scrollTop + document.documentElement.scrollTop - document.querySelector(".view").offsetTop;

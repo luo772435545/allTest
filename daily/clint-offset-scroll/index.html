@@ -2,9 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .odiv{
+            width: 300px;
+            height: 200px;
+            border: 5px solid #dddddd;
+            background-color: beige;
+            margin: 20px;
+            padding: 30px;
+        }
+    </style>
 </head>
 <body>
-$END$
+    <div class="odiv"></div>
+<script>
+    var Odiv=document.getElementsByClassName('odiv')[0];
+    var ClintWidth=Odiv.clientWidth;
+    var offsetWidth=Odiv.offsetWidth;
+    var scrollWidth=Odiv.scrollWidth;
+    var scrollTop=Odiv.scrollTop;
+    console.warn(' width: 300px;height: 200px;border: 5px solid #dddddd;background-color: beige;margin: 20px;padding: 30px;')
+    console.log('ClintWidth:'+ClintWidth+'    包含padding');
+    console.log('offsetWidth:'+offsetWidth+'   包含padding和border');
+    console.log('scrollWidth:'+scrollWidth);
+    console.log('scrollTop:'+scrollTop)
+</script>
 </body>
 </html>

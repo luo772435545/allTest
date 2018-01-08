@@ -2,9 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+    <style>
+        .view{width: 800px;height: 544px;margin:20px auto;position: relative;}
+        #cas{display: block;border:1px solid;background:url(image/table.jpg) no-repeat;}
+
+    </style>
 </head>
 <body>
-$END$
+<div class="view">
+    <canvas id="cas" width="800" height="544">您的浏览器不支持canvas，请升级浏览器</canvas>
+    <img src="image/white_ball.png" id="wb" alt="" style="display:none"/>
+    <img src="image/yellow_ball.png" id="yb" alt="" style="display:none"/>
+    <script>
+        /*
+        *  球的位置 x,y
+        *  桌子的大小 w,h
+        *  球的速度 u
+        *  距离
+        *
+        *
+        * */
+        class draw {
+            constructor(){
+                this.canvas=document.getElementById('cas');
+                this.context=this.canvas.getContext('2d');
+            }
+            ball(x,y){
+                var wb=document.getElementById("wb");
+                this.context.drawImage(wb,x,y)
+            }
+        }
+        var start=new draw();
+        class paint{
+            constructor(x,y){
+                this.x=x;
+                this.y=y;
+                this.su=6;
+                this.ty=1;
+                this.xu=0.6;
+                this.timer=0
+            }
+            suan(){
+                let _this=this;
+                this.x+=this.su;
+                this.su=this.su*0.998;
+                console.log(this.su)
+                if(this.x>730 || this.x<=40){
+                    this.ty=-this.ty;
+                    this.su=this.su*this.ty;
+                }
+                start.ball(_this.x,_this.y);
+                if(Math.abs(_this.su)<0.8){
+                    clearInterval(tt);
+                    return false
+                }
+            }
+            go(){
+                start.context.clearRect(0,0,800,544);
+                pa.suan();
+            }
+        }
+        var pa=new paint(40,60);
+      //  pa.go()
+        var tt=setInterval(pa.go,1000/60)
+    </script>
+</div>
 </body>
 </html>

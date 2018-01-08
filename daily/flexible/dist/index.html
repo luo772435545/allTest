@@ -2,15 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
    <!-- <script src="index.js"></script>-->
-
-    <link rel="stylesheet" href="animate.css" type="text/css">
-   <!-- <script src="http://192.168.1.135:8080/target/target-script-min.js#/"></script>-->
-    <script src="flexible.js"></script>
+    <link rel="stylesheet" href="/dist/ce5a7ddc4b6f94ef81603e0a1f042988.css" type="text/css">
+    <script src="/dist/7654702a9e4d832cfc97cf9d74c2dac2.js"></script>
     <style>
         *{
             margin: 0;
@@ -25,7 +22,6 @@
             overflow: hidden;
             position: relative;
             height: 200px;
-            border-bottom: 1px solid #ddd;
         }
         ul{
             position: absolute;
@@ -42,7 +38,7 @@
     </style>
 </head>
 <body>
-<div class="ta" style="width: 100px;height: 60px;background-color: grey"></div>
+<div class="ta" style="width: 100px;height: 20px;background-color: grey"></div>
 <div style="width: 2.66666667rem;height: 20px;background-color:rebeccapurple"></div>
 <div class="odiv">
     <ul class="ul">
@@ -54,15 +50,7 @@
 </div>
 <script>
     var doEl=document.documentElement;
-    var addEvent = function(oTarget, sEventType, fnHandler){
-        if (oTarget.addEventListener) {
-            oTarget.addEventListener(sEventType, fnHandler, false);
-        } else if (oTarget.attachEvent) {
-            oTarget.attachEvent("on" + sEventType, fnHandler);
-        } else {
-            oTarget["on" + sEventType] = fnHandler;
-        }
-    };
+  //  document.addEventListener('touchmove',function(e){e.preventDefault(); },false);
     var to=document.getElementsByClassName('ta')[0];
     var  ul=document.getElementsByClassName('ul')[0];
     var li=document.getElementsByClassName('ul')[0].getElementsByTagName('li');
@@ -73,46 +61,12 @@
     ul.style.width=li[0].clientWidth*li.length+'px';
     let startX=0;
     let moveX=0;
-
-    addEvent(ul,'touchstart',touchstart);
-    addEvent(ul,'touchmove',touchmove);
-    addEvent(ul,'touchend',touchend);
-    function touchstart(e) {
+    ul.addEventListener('touchstart',function (e) {
         startX=e.touches[0].pageX;
-    }
-    function touchmove(e) {
-        e.preventDefault();
-        if (!startX || !e.touches.length) return;
-        let index=e.target.index;
-        let width=li[0].clientWidth;
-        moveX=e.touches[0].pageX-startX;
-        if(moveX>0){
-            ul.style.left=-(index*width)+moveX+'px';
-        }else {
-            ul.style.left=moveX-(index*width)+'px';
-        }
-    }
-    function touchend(e) {
-        let index=e.target.index;
-        let width=li[0].clientWidth;
-        if(moveX<-100 || moveX>100){
-            if(moveX>0){
-                let ind;
-                index==0?ind=0:ind=index-1
-                ul.style.left=-ind*width+'px';
-            }else {
-                index>=len-1?ul.style.left=-index*width+'px':ul.style.left=-(index+1)*width+'px'
-            }
-        }else {
-            ul.style.left=-index*width+'px';
-        }
-        startX=0
-    }
-/*
-    ul.addEventListener('touchstart',);
+    });
     ul.addEventListener('touchmove',function (e) {
         e.preventDefault();
-        if (!startX || !e.touches.length) return;
+        e.stopPropagation();
         let index=e.path[0].index;
         let width=li[0].clientWidth;
         moveX=e.touches[0].pageX-startX;
@@ -123,6 +77,8 @@
         }
     });
     ul.addEventListener('touchend',function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         let index=e.path[0].index;
         let width=li[0].clientWidth;
         if(moveX<-100 || moveX>100){
@@ -137,7 +93,7 @@
             ul.style.left=-index*width+'px';
         }
         startX=0
-    });*/
+    })
 </script>
 </body>
 </html>

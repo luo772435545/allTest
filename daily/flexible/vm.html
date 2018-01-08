@@ -1,10 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .view{
+            width: 1000vw;height: 30vh;margin: 0 auto;
+            border-bottom: 1px solid #ddd;
+            position: relative;
+        }
+        .item{
+            float: left;
+            width: 87.2vw;
+            height: 30vh;
+            margin: 0 5vw;
+            background-color: #CCCCCC;
+        }
+    </style>
 </head>
 <body>
-$END$
+    <div class="view">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+<script>
+    /*类*/
+    class silde{
+        constructor(){
+            this.length=document.getElementsByClassName('view')[0].getElementsByClassName('item').length;
+            this.width=87.2*this.length;
+        }
+        init(){
+            this.setWid();
+        }
+        setWid(){
+            document.getElementsByClassName('view')[0].style.width=this.width+'vw';
+        }
+    }
+    var page=new silde();
+    page.init();
+</script>
 </body>
 </html>
