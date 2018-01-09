@@ -1,3 +1,4 @@
 .idea/
-serversTest/node_modules/_acorn@2.7.0@acorn/src/expression.js
+node_modules/
 serversTest/node_modules/
+luoganTest/daily/tap/node_modules/

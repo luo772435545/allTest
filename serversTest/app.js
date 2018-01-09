@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var open=require('opn')
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -32,7 +33,7 @@ app.use(function(req, res, next) {
 });
 
 app.listen('3600',function () {
-    console.log('3600')
+    console.log('3600');
 })
 // error handler
 app.use(function(err, req, res, next) {
@@ -45,4 +46,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+open('http://192.168.1.135:3600/flexible/index.html');
 module.exports = app;
