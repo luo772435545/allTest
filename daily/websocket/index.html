@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/flexible.js"></script>
+    <script src="js/vue.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0}
+        .head{height: 160px;display: flex;justify-content: space-between}
+        .head .gamePlayer1,.head .gamePlayer2{width: 30%}
+        .head  img{height: 100%}
+        .countDown{width: 60px;height: 60px;text-align: center;line-height: 60px;display: block;border-radius: 50%;border: 1px solid #ddd;margin-top: 30px;}
+        .subject{}
+        .subject h3{text-align: center;font-size: 24px;}
+        .subject p{width: 70%;margin: 20px auto;line-height:38px;border: 1px solid #dddddd;border-radius: 5px;}
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="head">
+        <div class="gamePlayer1">
+            <img src='img/img1.jpg' />
+        </div>
+        <div class="countDown">{{surTime}}</div>
+        <div class="gamePlayer2">
+            <img src='img/img2.jpg' />
+        </div>
+    </div>
+    <div class="subject">
+        <h3>{{subject.h}}</h3>
+        <p v-for="item in subject.d" @click="nextSubject">{{item}}</p>
+    </div>
+</div>
+<script>
+    var ws = new WebSocket("ws://192.168.1.135:6677");
+    var el=new Vue({
+        el:'#app',
+        data(){
+            return{
+                surTime:10,
+                subject:{},
+                subIndex:0
+            }
+        },
+        methods:{
+            time(){
+                var _this=this;
+                setInterval(()=>{
+                    if(_this.surTime<=0){
+                       _this.surTime =11;
+                    }
+                    _this.surTime--;
+                },1000)
+            },
+            getDate(){
+                var _this=this;
+                ws.onmessage=function (ev) {
+                    console.log(ev)
+                   /* if(ev.data.code=='-1'){
+                        alert(JSON.parse(ev.data).data)
+                    }else if(ev.data.code=='1'){
+                        _this.subIndex++;
+                        _this.subject=JSON.parse(ev.data).data
+                    }else if(ev.data.code=='200'){
+                        alert(JSON.parse(ev.data).data)
+                    }*/
+                };
+            },
+            wsSend(data){
+                ws.send(data);
+            },
+            nextSubject(){
+
+            }
+        },
+        mounted(){
+            var _this=this;
+            ws.onopen = function (e) {
+                console.log('Connection to server opened');
+                _this.wsSend(JSON.stringify({code:'1',index:_this.subIndex}));
+            };
+            ws.onmessage=function (ev) {
+                _this.subject=JSON.parse(ev.data).data
+            };
+            this.time();
+          //  this.getDate();
+        },
+
+    });
+
+    var co=document.querySelector('#message');
+
+
+    function sendMessage() {
+        ws.send('123');
+    }
+</script>
+</body>
+</html>

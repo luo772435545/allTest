@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <div style="width: 200px;height: 300px;border: 1px solid #ddd" ref="ccc"></div>
+</div>
+<script>
+    var el=new Vue({
+        el:'#app',
+        data(){},
+        methods:{},
+        mounted(){
+            this.$nextTick(()=>{
+                console.log(this.$refs.ccc);
+                //this.$refs.ccc.backgroundColor='red';
+                this.$refs.ccc.width='300px';
+            })
+          //  this.$refs.width='600px';
+          //  console.log(this.$refs.ccc.clientWidth);
+        }
+    });
+</script>
+</body>
+</html>

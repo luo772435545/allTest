@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./vue.min.js"></script>
+    <style>
+        .cel{margin: 100px auto}
+    </style>
+</head>
+<body>
+<div id="app">
+    <table class="cel">
+        <tr v-for="(item,index) in map">
+            <td v-for="(nub,cindex) in item" @click="ccc(index,cindex)">{{nub}}</td>
+        </tr>
+    </table>
+</div>
+<script>
+    var el=new Vue({
+        el: "#app",
+        data(){
+            return{
+                row:0, col:-1, n:15,dir:0,map:[],changnub:[],indk:0//填的数字
+            }
+        },
+        methods:{
+            init(){
+                this.row=0;
+                this.col=-1;
+                this.n=9;
+                this.dir=0;
+                this.map=[];
+            },
+            start(n){
+                let vm=this;
+                vm.map=[];
+                for(let i=0;i<n;i++){
+                    vm.map.push([]);
+                }
+                var  i=0;
+
+                do {
+                    if(vm.dir % 4==0){
+                        if(vm.right()){
+                            i++
+                        }else {
+                            vm.dir++;
+                        }
+                    }else if(vm.dir % 4==1){
+                        if(vm.bottom()){
+                            i++
+                        }else {
+                            vm.dir++;
+                        }
+                    }else if(vm.dir % 4==2){
+                        if(vm.left()){
+                            i++
+                        }else {
+                            vm.dir++;
+                        }
+                    }else if(vm.dir % 4==3){
+                        if(vm.top()){
+                            i++
+                        }else {
+                            vm.dir++;
+                        }
+                    }
+
+                    let isT=false;
+                    vm.changnub.forEach((item)=>{
+                        if(item==i){
+                            isT=true
+                        }
+                    })
+                    if(isT){
+                        i++;
+                        // this.map[vm.row][vm.col] = 0;
+                    }else {
+                        this.map[vm.row][vm.col] = i;
+                    }
+                    this.map[vm.row][vm.col] = i;
+                    // 赋
+                } while (i < vm.n * vm.n);
+            },
+            left(){
+                return this.move(this.row, this.col - 1);
+            },
+            right(){
+                return this.move(this.row, this.col + 1);
+            },
+            top(){
+                return this.move(this.row - 1, this.col);
+            },
+            bottom(){
+                return this.move(this.row + 1, this.col);
+            },
+            move(row,col){
+                return (0 <= row && row < this.n) && (0 <= col && col < this.n) && !this.map[row][col] && (this.row = row, this.col = col, true);
+            },
+            ccc(ind,cind){
+                let vm=this;
+                this.changnub.push(this.map[ind][cind]);
+                this.init();
+                vm.start(vm.n)
+            },
+            go(){
+                this.indk++;
+                if(this.indk>this.n*this.n){
+                    return;
+                }
+                var _this=this;
+                _this.map.forEach((valc,cindex)=>{
+                    valc.forEach((val,index)=>{
+                        if(val==_this.indk){
+                            if(val.toString().indexOf('6')=='-1'){
+                                _this.$set(_this.map[cindex],[index],'x');
+                            }
+                            setTimeout(function () {
+                                _this.go(this.indk);
+                            },(_this.indk)+100);
+                            return;
+                        }
+                    })
+                });
+            }
+        },
+        mounted(){
+            this.start(this.n);
+            console.log(this.map);
+            let _this=this;
+            setTimeout(function () {
+                _this.go(this.indk);
+            },1000)
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title><style>
+    *{
+        margin: 0;padding: 0;
+    }
+    ul{
+        width: 500px;margin: 100px auto;
+    }
+    li{
+        list-style: none;
+        width: 300px;
+        height: 40px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #CCCCCC;
+        background-color: #CCCCCC;
+    }
+</style>
+</head>
+<body>
+<ul id="ul">
+    <li  draggable="true">1</li>
+    <li  draggable="true">2</li>
+    <li  draggable="true">3</li>
+    <li  draggable="true">4</li>
+    <li  draggable="true">5</li>
+</ul>
+<script>
+    var li=document.getElementById('ul').getElementsByTagName('li'),
+        ul=document.getElementById('ul');
+    let startY=0,
+        dom,
+        enddom;
+    for(let i=0;i<li.length;i++){
+        li[i].addEventListener('dragstart',function (e) {
+            dom=e.target;
+            startY=e.pageY;
+        });
+        li[i].addEventListener('dragenter',function (e) {
+            enddom=e.target;
+            console.log('123')
+        });
+        li[i].addEventListener('dragover',function (e) {
+
+        });
+        li[i].addEventListener('dragleave',function (e) {
+
+        });
+        li[i].addEventListener('dragend',function (e) {
+            if(startY-e.pageY>0){
+                ul.insertBefore(dom,enddom)
+            }else {
+                insertAfter(dom,enddom);
+            }
+
+        });
+    }
+    function insertAfter(newElement, targetElement){
+        var parent = targetElement.parentNode;
+        if(parent.lastChild == targetElement){
+            parent.appendChild(newElement);
+        }else{
+            parent.insertBefore(newElement,targetElement.nextSibling);
+        }
+    }
+
+
+</script>
+</body>
+</html>

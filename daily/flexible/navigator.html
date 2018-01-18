@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" id="files" accept="image/jpeg,image/jpg,image/png">
+<img src="blank.gif" id="preview">
+<script>
+    var elem = document.getElementById('files'),
+        img = document.getElementById('preview');
+    elem.onchange = function (e) {
+        console.log(e)
+        var files = elem.files,
+            reader = new FileReader();
+        console.log(files)
+        if(files && files[0]){
+            reader.onload = function (ev) {
+                console.log(ev)
+                img.src = ev.target.result;
+            }
+            reader.readAsDataURL(files[0]);
+        }
+    }
+</script>
+<script>
+   /* var battery = navigator.battery || navigator.webkitBattery || navigator.mozBattery || navigator.msBattery;
+    var str = '';
+    if (battery) {
+        str += '<p>你的浏览器支持HTML5 Battery API</p>';
+        if(battery.charging) {
+            str += '<p>你的设备正在充电</p>';
+        } else {
+            str += '<p>你的设备未处于充电状态</p>';
+        }
+        str += '<p>你的设备剩余'+ parseInt(battery.level*100)+'%的电量</p>';
+    } else {
+        str += '<p>你的浏览器不支持HTML5 Battery API</p>';
+    }
+    alert(str)*/
+</script>
+</body>
+</html>

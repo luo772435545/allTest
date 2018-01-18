@@ -12,8 +12,7 @@
 </head>
 <body>
 
-
-<dialog id="dialog" open>
+<dialog id="dialog">
     <h2>我是对话框标题</h2>
     <p>我是对话框内容</p>
     <style>
@@ -22,12 +21,17 @@
 </dialog>
 
 
+<a onclick="openF()">123</a>
 
 
 
 
+<script>
 
-
+    function openF() {
+         document.querySelector('dialog').show();
+    }
+</script>
 
 
 

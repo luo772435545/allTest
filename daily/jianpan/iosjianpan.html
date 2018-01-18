@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://192.168.1.135:8080/target/target-script-min.js#anonymous"></script>
+    <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes">
+    <title>Document</title>
+    <style>
+        .tanquan{width: 80%;height: 300px;position: fixed;top: 50%;left: 50%;margin-top: -150px;margin-left: -40%;border: 1px solid #dddddd;border-radius: 6px;}
+        .tanquan .ipt{margin-top: 50px;width: 100%;}
+        input{width: 80%;line-height: 38px;}
+        .ptt{margin-top: 450px;}
+        .booter{position: fixed;bottom: 0;left: 0;width: 100%;height: 40px;background-color: #00B7FF;z-index: 5}
+    </style>
+</head>
+<body class="box">
+<!--<div class="tanquan">
+    <input type="text" id="ipt" value="123">
+</div>-->
+<input type="text" class="ptt">
+<input type="text">
+<a class="id" href="myapp://tronker.com/openwith?type=zhongqiu&title=123">进入app</a>
+<button onclick="goToNative()">按钮1</button>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div class="booter">
+    <input type="text" class="jij">
+</div>
+<script>
+window.onload=function () {
+    var jj=document.querySelector('.jij');
+    jj.addEventListener('focus',e=>{
+        document.querySelector('.booter').style.position='absolute';
+    });
+    jj.addEventListener('blur',e=>{
+        document.querySelector('.booter').style.position='fixed';
+    });
+}
+
+
+
+var id=document.querySelector('id');
+function openIos(url, callback) {
+    if (!url) {
+        return;
+    }
+    var node = document.createElement('iframe');
+    node.style.display = 'none';
+    var body = document.body;
+    var timer;
+    var clear = function(evt, isTimeout) {
+        (typeof callback==='function') &&  callback(isTimeout);
+        window.removeEventListener('pagehide', hide, true);
+        window.removeEventListener('pageshow', hide, true);
+        if (!node) {
+            return;
+        }
+
+        node.onload = null;
+        body.removeChild(node);
+        node = null;
+
+    };
+    var hide = function(e){
+        clearTimeout(timer);
+        clear(e, false);
+    };
+    window.addEventListener('pagehide', hide, true);
+    window.addEventListener('pageshow', hide, true);
+    node.onload = clear;
+    node.src = url;
+    body.appendChild(node);
+    var now = +new Date();
+    //如果事件失败，则1秒设置为空
+    timer = setTimeout(function(){
+        timer = setTimeout(function(){
+            var newTime = +new Date();
+            if(now-newTime>1300){
+                clear(null, false);
+            }else{
+                clear(null, true);
+            }
+
+        }, 1200);
+    }, 60);
+window.onload=function () {
+
+
+
+        var body=document.body;
+         if(!body) {
+         setTimeout(function(){
+         window.location.href="myapp://tronker.com/openwith?type=zhongqiu&title=132"
+         }, 0);
+         } else {
+         alert('进入')
+         window.location.href="myapp://tronker.com/openwith?type=zhongqiu&title=132"
+         }
+         setTimeout(function() {
+         window.location.href='';
+         alert('下载')//去下载，下载链接一般是itunes app store或者apk文件链接
+         /**
+         * 测试时间设置小于800ms时，在android下的UC浏览器会打开native app时并下载apk，
+         * 测试android+UC下打开native的时间最好大于800ms;
+         */
+         }, 800);
+    }
+}
+</script>
+</body>
+</html>
