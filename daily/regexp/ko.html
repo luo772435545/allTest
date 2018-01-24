@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    var str='<p>这是第一行</p><p>这是第23行<span>asdjawrji</span>123</p>';
+       /**
+        * 问题
+        * 1 写入的时候不应该有标签
+        * 2 单句写完的时候应有标签
+        * 3
+        *
+        * */
+       var ind=0;
+       var dom=document.querySelector('.box');
+       function tystring() {
+
+           for(let i=0;i<str.length;i++){
+               if(str.charAt(i)=='<' && str.charAt(i+1)!='/'){
+                   let reg=new RegExp('.{'+i+'}<([^\/]+?)>(.*?)<\/.+?>');
+                   var creatDom=document.createElement(reg);
+                   let regt=new RegExp('.{'+i+'}<'+str.match(reg)[1]+'>(.*?)</'+str.match(reg)[1]+'>');
+                   dom.appendChild(regt);
+                   regt.innerHTML=str.
+                   console.log(str.match(regt)[1]);
+
+               }
+           }
+       }
+
+
+
+
+
+
+
+/*
+    for(let i=0;i<str.length;i++){
+        if(str.charAt(i)=='<' && str.charAt(i+1)!='/'){
+            let reg=new RegExp('.{'+i+'}<[^\/]+?>(.*?)<\/.+>');
+            console.log(str.match(reg));
+        }
+    }*/
+    var newStr='';
+    for(let i=0;i<str.length;i++){
+        if(str.charAt(i)=='<' && str.charAt(i+1)!='/'){
+            let reg=new RegExp('.{'+i+'}<([^\/]+?)>(.*?)<\/.+?>');
+            let regt=new RegExp('.{'+i+'}<'+str.match(reg)[1]+'>(.*?)</'+str.match(reg)[1]+'>');
+            console.log(str.match(regt)[1]);
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>
+    input1=><input type="text" id="input1">
+</p>
+<p>
+    input2=>
+    <input type="text" id="input2">
+</p>
+<div>
+    我每次比input1的值加1=>
+    <span id="span"></span>
+</div>
+<script>
+    /**
+     * Object.defineProperty 和   Object.defineProperties
+     *
+     *
+     *
+     *
+     * Configurable //表示能否通过delete删除此属性，能否修改属性的特性，或能否修改把属性修改为访问器属性，如果直接使用字面量定义对象，默认值为true
+     * Enumerable   //表示该属性是否可枚举，即是否通过for-in循环或Object.keys()返回属性，如果直接使用字面量定义对象，默认值为true
+     * Writable     //能否修改属性的值，如果直接使用字面量定义对象，默认值为true
+     * Value        //该属性对应的值，默认为undefined
+     *
+     * */
+    var oInput1 = document.getElementById('input1');
+    var oInput2 = document.getElementById('input2');
+    var oSpan = document.getElementById('span');
+    var obj = {};   //=>  dep
+    Object.defineProperties(obj, {
+        val1: {
+
+            //  observer   =>
+            configurable: true,
+            get: function() {
+                oInput1.value = 0;
+                oInput2.value = 0;
+                oSpan.innerHTML = 0;
+                return 0
+            },
+            set: function(newValue) {
+                oInput2.value = newValue;
+                oSpan.innerHTML = Number(newValue) ? Number(newValue) : 0
+            }
+        },
+        val2: {
+            //  watcher
+            configurable: true,
+            get: function() {
+                oInput1.value = 0;
+                oInput2.value = 0;
+                oSpan.innerHTML = 0;
+                return 0
+            },
+            set: function(newValue) {
+                oInput1.value = newValue;
+                oSpan.innerHTML = Number(newValue)+1;
+            }
+        }
+    })
+    oInput1.value = obj.val1;
+    oInput1.addEventListener('keyup', function() {
+        obj.val1 = oInput1.value;
+    }, false)
+    oInput2.addEventListener('keyup', function() {
+        obj.val2 = oInput2.value;
+    }, false)
+
+
+
+    /***
+     * 与vue结合 理解
+     *
+     * 在vue实例化  有三个值  分别为
+     * observe  => 能监听到所有data值变化
+     * water  => 把data 跟新到页面
+     * def  abserve  与 water 的纽带
+     *
+     * */
+</script>
+</body>
+</html>

@@ -42,9 +42,9 @@ console.log(ewtew.replace(reg,''))*/
 /* var str="<img src='Ateccst.jpg' width='60px' height='80px'/>";
 
  */
-var str="<img src='Ateccst.jpg' width='60px' height='80px'/>";
+/*var str="<img src='Ateccst.jpg' width='60px' height='80px'/>";
 
-var reg=/.*src='(.+?)'.*/g;
-console.log(str.replace(reg,'$1'));
+var reg=/.*src='(.+?)'.*!/g;
+console.log(str.replace(reg,'$1'));*/
 
 

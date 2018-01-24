@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div><input id="ipt"></div>
+<div><input id="ipt1"></div>
+<div><span id="ipt2"></span></div>
+<script>
+    var ipt=document.querySelector('#ipt'),
+        ipt1=document.querySelector('#ipt1'),
+        ipt2=document.querySelector('#ipt2');
+        var obj={};
+        Object.defineProperties(obj,{
+            val1:{
+              configurable:true,
+                get(){
+                  ipt.value=0;
+                  ipt1.value=0;
+                  ipt2.innerHTML=0;
+                },
+                set(newVal){
+                    ipt1.value=newVal;
+                    ipt2.innerHTML=newVal;
+                }
+            },
+            val2:{
+                configurable:true,
+                get(){
+                    ipt.value=0;
+                    ipt1.value=0;
+                    ipt2.innerHTML=0;
+                },
+                set(newVal){
+                    ipt.value=newVal;
+                    ipt2.innerHTML=newVal;
+                }
+            }
+            //value:ipt2.innerHTML
+        });
+     /*   Object.defineProperty(obj,{
+            value:ipt2.innerHTML
+        })*/
+
+   // ipt1.value=obj.val1;
+    ipt.addEventListener('keyup',function (e) {
+       /* val1=e.target.value
+        ipt2.innerHTML=val1;*/
+        obj.val1 = ipt.value;
+    })
+    ipt1.addEventListener('keyup',function (e) {
+        /*val2=e.target.value
+        ipt2.innerHTML=val2;*/
+        obj.val2 = ipt1.value;
+    })
+</script>
+</body>
+</html>

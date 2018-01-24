@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="pagelist"></div>
+<script>
+
+    var options={
+        current:1,//当前页
+        pageCount:16,//总页数
+        callback:function () {
+            console.log('小时候很怕鬼，现在我反而希望有鬼魂的存在')
+        }
+    };
+    class pageMethod{
+        constructor(options){
+            this.current=options.current,
+            this.pageCount=options.pageCount,
+            this.callback=options.callback
+        }
+        init(){
+            var page=document.querySelector('.pagelist');
+            let minInd=1,ind=0;
+            if(this.current>5){
+                minInd=this.current-5;
+            }
+            for(let i=minInd;i<=this.pageCount;i++){
+                ind++;
+                if(ind>10){
+                    return;
+                }
+                var t=document.createElement('span');
+                t.dataset.list=i;
+                if(i==this.current){
+                    t.style.color='red'
+                }
+                t.innerHTML=i;
+                page.appendChild(t);
+            }
+        }
+    }
+    var pagep=new pageMethod(options);
+    pagep.init();
+    function ccc() {
+        var sp=document.querySelector('.pagelist').getElementsByTagName('span');
+        for(let i=0;i<sp.length;i++){
+            sp[i].addEventListener('click',function (even) {
+                let ind=even.target.dataset.list;
+                console.log(ind);
+                document.querySelector('.pagelist').innerHTML='';
+                let cc=new pageMethod({
+                    current:ind,//当前页
+                    pageCount:16,//总页数
+                    callback:function () {
+
+                    }
+                });
+                cc.init();
+                ccc();
+            })
+        }
+    }
+    ccc()
+</script>
+</body>
+</html>

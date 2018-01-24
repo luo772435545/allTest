@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>js typing</title>
+    <style>
+        *{margin: 0;padding: 0}
+        .box{width: 600px;border: 1px solid #ddd;margin: 0 auto}
+    </style>
+</head>
+<body>-
+<div id='divTyping'></div>
+<script>
+    var arr=['q2','123','af','ac'];
+    /*var tt=arr.reduce((er,cc)=>{
+        console.log(er)
+        console.log(cc)
+        return cc
+    });*/
+    arr.every((a,b)=>{
+        console.log(a);
+        console.log(b);
+        return a
+    })
+    console.log(tt);
+
+
+
+
+    /*class wan {
+        constructor(options){
+            this.index=0;
+            this.str=options.str;
+            this.dom=options.dom
+        }
+        white(){
+            let _this=this;
+            if(_this.index<_this.str.length){
+                for(let i=0;i<str.length;i++){
+                    if(_this.str.charAt(i)=='<' && _this.str.charAt(i+1)!='/'){
+                        let reg=new RegExp('.{'+i+'}<([^\/]+?)>(.*?)<\/.+?>');
+                        let regt=new RegExp('.{'+i+'}<'+_this.str.match(reg)[1]+'>(.*?)</'+_this.str.match(reg)[1]+'>');
+                        console.log(_this.str.match(regt)[1]);
+                    }
+                }
+                if(_this.str.charAt(_this.index)=='<' &&_this.str.charAt(_this.index+1)=='/'){
+                    console.log(_this.index)
+                    let reg=new RegExp('.{'+_this.index+'}.+?>(.*)<\/.+>');
+                    console.log(_this.str.match(reg));
+                }
+                _this.dom.innerHTML=_this.str.slice(0,_this.index++)+'_';
+                setTimeout('gogo.white()',100);
+               /!* if(_this.str.charAt(_this.index)=='&'){
+                    let script,style,
+                        reg=new RegExp('.{'+(_this.index+1)+'}(.*)&');
+                        script=str.match(reg)[1];
+                    if(script.indexOf('style')!='-1'){
+                        var scrReg=/style="(.*)"/;
+                        let style=script.match(scrReg)[1];
+                        let styleKyeVal=style.split(':');
+                        _this.dom.style[styleKyeVal[0]]=styleKyeVal[1];
+                    }
+                    _this.index+=(script.length+2);
+                    setTimeout('gogo.white()',100);
+                }else {
+                    _this.dom.innerHTML=_this.str.slice(0,_this.index++)+'_';
+                    setTimeout('gogo.white()',100);
+                }*!/
+            }else {
+                _this.dom.innerHTML=_this.dom.innerHTML.toString().slice(0,-1);
+            }
+        }
+    }
+    let styleArr=['width:','']
+    var gogo=new wan({
+        str:'<p>首先我打一行字。</p><p>cascaawrhi。</p>',
+        dom:document.getElementById('divTyping')
+    });
+    gogo.white();
+
+    function addClass (ele, cls) {
+        if (!this.hasClass(ele, cls)) ele.className += " " + cls;
+    }
+*/
+    /*var str='<p>首先我打一行字。</p><p>cascaawrhi。</p>&style=red&'
+    var i = 0;
+    function typing(){
+        var divTyping = document.getElementById('divTyping');
+        if(str.charAt(i)=='&'){
+            var script='',
+                reg=new RegExp('.{'+(i+1)+'}(.*)&');
+            script=str.match(reg)[1];
+            console.log(script)
+            if(script.indexOf('style')!='-1'){
+                var reg=/style="(.*)"/;
+                console.log(script.match(reg));
+                let style=script.match(reg)[1];
+                document.querySelector('#divTyping').style.color=style
+            }
+        }else {
+            if (i-5 <= str.length) {
+                divTyping.innerHTML = str.slice(0, i++) + '_';
+                setTimeout('typing()', 100);//递归调用
+            }
+            else{
+                divTyping.innerHTML = str;//结束打字,移除 _ 光标
+            }
+        }
+    }
+    typing();*/
+</script>
+</body>
+</html>

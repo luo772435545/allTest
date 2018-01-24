@@ -19,9 +19,21 @@
     console.log(6);
     ccc();
     console.log(7)*/
-    var str='ko ko kolp lp';
+    /*var str='ko ko kolp lp';
     var cc=new RegExp("(\\s|^)ko");
-    console.log(str.match(cc));
+    console.log(str.match(cc));*/
+
+   /* var str='?ooo=999&ccc=666';
+    var reg=/(^|&)ccc=(.*)?(&|$)/;
+    var lp=str.substr(1).match(reg);
+    console.log(lp);
+    console.log(lp[2]);*/
+    var img="<img src='1234.png' />";
+    function getAttr(str,key){
+        var reg=new RegExp(".*"+key+"='(.*)?'");
+        return str.match(reg)[1]
+    }
+    console.log(getAttr(img,'src'));
 </script>
 </body>
 </html>
