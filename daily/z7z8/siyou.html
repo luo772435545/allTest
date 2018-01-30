@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="idv">111</div>
+<script>
+    /*document.querySelector('.idv').addEventListener('click',function (e) {
+        console.log(this)
+    })*/
+    /*
+    * 1 creat  XHR requet duixiang
+    * open
+    * 200  4
+    *
+    *
+    * */
+    /*function tap(dom, fun) {
+        let time=0,
+            isMove=false,
+            maxTime=250;
+        dom.addEventListener('touchstart',function () {
+            time=+new Date();
+        })
+        dom.addEventListener('touchmove',function () {
+            isMove=true
+        })
+        dom.addEventListener('touchend',function (e) {
+                if(isMove && time+maxTime<new Date()){
+                    fun(e)
+                }else {return}
+        })
+    }*/
+    /*function getUrlParse(key) {
+        var url=window.location.search;
+        var reg=new RegExp('(^|&)'+key+'=(.*?)(&|$)');
+        return url?url.substr(1).match(reg)[2]:null
+    }
+    console.log(getUrlParse('red'))*/
+   /* function arr(n) {
+        let arr=[];
+        for(let i=0;i<n;i++){
+            arr.push(i)
+        }
+        return arr;
+    }
+    console.log(arr(10))*/
+
+  /* var yttt= Array.from(['a','b','c','d'],function (e,f) {
+       // console.log(e)
+       // console.log(f)
+       return e
+    }*/
+   /* var ggg=['a','v','f','p'];
+    var gg=new Array();
+
+  var tt=Array(9).map((e,oo)=>{
+        console.log(oo)
+       return oo;
+   });
+    console.log(tt)*/
+   /**
+    * 数组a-z a到z
+    * */
+   var tt=Array.from({length:26},(s,x)=>{
+      return String.fromCharCode(97+x)
+   });
+ //  console.log(tt);
+
+    /**
+     * String
+     * 获取
+     * indexOf charAt charCode
+     * 截取
+     * substring 1 索引
+     * substr
+     * slice 1 -2  都可以为负数
+     * replace
+     * split
+     *
+     * */
+
+    var str='caniaj<ajwri';
+  //  console.log(str.substring(1,6))
+    /**
+     * 数组
+     * 增
+     * push shift unshift pop
+     * 删 改
+     * splice
+     * 查
+     * slice
+     *
+     * join
+     *
+     * forEach  map every filter concat
+     *
+     *
+     *
+     * 值类型 引用类型
+     * */
+
+    var art=[1,3,5];
+    var v=art;
+   // var v=art.concat();
+    v[1]=6;
+   // console.log(art);
+   /* console.log(art);
+    console.log(v);*/
+
+    function a() {
+        var t='132';
+        return function () {
+            console.log(t)
+        }
+    }
+    console.log(a());
+
+
+    /* if(window.XMLHttpRequest) {
+         xmlHttp = new XMLHttpRequest();
+         if(xmlHttp.overrideMimeType) {
+             xmlHttp.overrideMimeType("text/xml");
+         }
+     } else if(window.ActiveXobject) {
+         var activeName = ["MSXML2.XMLHTTP", "Microsoft.XMLHTTP"];
+         for(var i = 0; i < activeName.length; i++) {
+             try {
+                 xmlHttp = new ActiveXobject(activeName[i]);
+                 break;
+             } catch(e) {}
+         }
+     }
+     if(!xmlHttp) {
+         alert("创建xmlhttprequest对象失败");
+     } else {}
+     xmlHttp.onreadystatechange= callback;
+
+     function callback(){}
+     xmlHttp.open("get","ajax?name="+ name,true)
+     xmlHttp.send(null);
+     if(xmlHttp.readyState == 4){       //判断交互是否成功
+
+         if(xmlHttp.status == 200){         //获取服务器返回的数据         //获取纯文本数据
+
+             var responseText =xmlHttp.responseText;
+
+             document.getElementById("info").innerHTML = responseText;
+
+         }
+
+     }*/
+</script>
+</body>
+</html>

@@ -17,6 +17,9 @@
     </table>
 </div>
 <script>
+    /**
+     * 'a-z'
+     * */
     var el=new Vue({
         el: "#app",
         data(){
@@ -28,7 +31,7 @@
             init(){
                 this.row=0;
                 this.col=-1;
-                this.n=9;
+                this.n=15;
                 this.dir=0;
                 this.map=[];
             },
@@ -42,38 +45,41 @@
                 do {
                     if(vm.dir % 4==0){
                         if(vm.right()){
-                            vm.setVal(i++);
+                            vm.setVal(i++,true);
                         }else {
                             vm.dir++;
                         }
                     }else if(vm.dir % 4==1){
                         if(vm.bottom()){
-                            vm.setVal(i++);
+                            vm.setVal(i++,true);
                         }else {
                             vm.dir++;
                         }
                     }else if(vm.dir % 4==2){
                         if(vm.left()){
-                            vm.setVal(i++);
+                            vm.setVal(i++,true);
                         }else {
                             vm.dir++;
                         }
                     }else if(vm.dir % 4==3){
                         if(vm.top()){
-                            vm.setVal(i++);
+                            vm.setVal(i++,true);
                         }else {
                             vm.dir++;
                         }
                     }
-                    vm.setVal(i);
-                    // this.map[vm.row][vm.col] = i;
-                    // 赋
+                    vm.setVal(i,false);
                 } while (i < vm.n * vm.n);
             },
-            setVal(i){
+            setVal(i,c){
                 //赋值
                 let vm=this;
-                vm.map[vm.row][vm.col]=i;
+                if(c){
+                    let code=String.fromCharCode(97+(i%26));
+                  //  console.log(code);
+                    vm.map[vm.row][vm.col]=code;
+                }
+
             },
             left(){
                 return this.move(this.row, this.col - 1);
@@ -101,18 +107,17 @@
                 if(this.indk>this.n*this.n){
                     return;
                 }
-                console.log(this.indk);
                 var _this=this;
                 _this.map.forEach((valc,cindex)=>{
                     valc.forEach((val,index)=>{
-                        if(val==_this.indk){
-                            if(val.toString().indexOf('6')=='-1'){
+                        if((cindex*_this.n)+index == _this.indk){
+                            var reg=new RegExp('(l|u|o|g|a|n)');
+                            if(!reg.test(val)){
                                 _this.$set(_this.map[cindex],[index],'x');
                             }
                             setTimeout(function () {
-                                _this.go(this.indk);
-                            },(_this.indk)+100);
-                            return;
+                                _this.go();
+                            },100);
                         }
                     })
                 });
@@ -120,11 +125,11 @@
         },
         mounted(){
             this.start(this.n);
-          //  console.log(this.map);
+            //  console.log(this.map);
             let _this=this;
             setTimeout(function () {
                 _this.go(this.indk);
-            },1000)
+            },5000)
         }
     })
 </script>

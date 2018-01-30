@@ -5,6 +5,9 @@
     <title>Title</title>
 </head>
 <body>
+<div>
+
+</div>
 <script>
     /*console.log(1)
     function ccc() {
@@ -28,12 +31,38 @@
     var lp=str.substr(1).match(reg);
     console.log(lp);
     console.log(lp[2]);*/
-    var img="<img src='1234.png' />";
+   /* var img="<img src='1234.png' />";
     function getAttr(str,key){
         var reg=new RegExp(".*"+key+"='(.*)?'");
         return str.match(reg)[1]
     }
-    console.log(getAttr(img,'src'));
+    console.log(getAttr(img,'src'));*/
+
+
+
+/*
+    function currying(fn, n) {
+        return function (m) {
+            return fn.call(this, m, n);
+        };
+    }
+
+    function tailFactorial(n, total) {
+        "use strict";
+        if (n === 1) {
+            console.log('1')
+            return total
+        };
+        return tailFactorial(n - 1, n * total);
+    }
+
+    const factorial = currying(tailFactorial, 1);
+
+    factorial(5)*/
+var nub=12.200;
+var str='12.100';
+console.log(str.replace(/0*$/g,''));
+    console.log(str.replace(/0*$/, ""));
 </script>
 </body>
 </html>
