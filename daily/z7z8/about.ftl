@@ -22,7 +22,7 @@
 		<nav class="left-nav fl">
 			<ul>
 				<li class="active" data-id="about"><a href="javascript:;">关于我们</a></li>
-				<li data-id="qyln"><a href="javascript:;">企业理念</a></li>
+				<li data-id="qyln"><a href="javascript:;">企业1理念</a></li>
 				<li data-id="qywh"><a href="javascript:;">企业文化</a></li>
 				<li data-id="qyry"><a href="javascript:;">企业荣誉</a></li>
 				<li><a href="tronker/contact.html">联系我们</a></li>
