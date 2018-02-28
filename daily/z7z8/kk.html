@@ -8,7 +8,32 @@
 <div>
 
 </div>
+<div style="width: 900px;border: 1px solid #ddd;height: 700px;position: relative">
+    <div class="asc" style="width: 100px;height: 100px;background-color: #00B7FF;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%)"></div>
+</div>
 <script>
+    var a=Array.from({length:9},(s,x)=>x)
+  //  console.log(parseInt(Math.random()*10));
+    for(var i=0;i<a.length;i++){
+        let random=Math.random()*(a.length-i);
+        let j=i+Math.floor(random);
+        [a[i],a[j]]=[a[j],a[i]]
+    }
+    console.log(a)
+
+   // Object.defineProperty('');
+    //数据的观察者  observer
+    //数据的订阅者  watch
+    //数据的纽带  dep
+
+
+
+    /*
+    *   observe 观察到数据的变化 dep找到有关联的数据dom 通知watch   watch做出相应的视图变化
+    *   watch  dom绑定了数据  会反应到dep
+    *
+    *
+    * */
     /*console.log(1)
     function ccc() {
         console.log(2);

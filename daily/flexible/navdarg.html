@@ -36,6 +36,19 @@
     let startY=0,
         dom,
         enddom;
+
+    var promis=new Promise(function (rev, red) {
+        if(true){
+            rev('ac');
+        }else {
+            red('asc')
+        }
+    })
+    promis.then((rrr)=>{})
+
+
+
+
     for(let i=0;i<li.length;i++){
         li[i].addEventListener('dragstart',function (e) {
             dom=e.target;
