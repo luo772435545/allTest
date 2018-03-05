@@ -7,7 +7,14 @@
 <body>
 <script>
     var arr=['123','acs','add','cc'];
-    Object.defineProperty(arr,)
+    var descriptor = {
+        configurable:true,//是否可以删除目标属性或是否可以再次修改属性的特性
+        value:'ha',//属性对应的值
+        enumerable:true,//此属性是否可以被枚举
+        writable:false//属性的值是否可以被重写
+    }; // 没有继承的属性
+    Object.defineProperty(arr,'dd',descriptor);
+    console.log(arr)
 </script>
 </body>
 </html>
