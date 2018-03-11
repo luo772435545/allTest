@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+   /* if(!window.promise){
+        var thenCach=[];
+        function promise(fn) {
+            var _this=this;
+            fn.call(_this,_this.resolve,_this.reject)
+        }
+        promise.prototype.resolve=function () {
+            var ag=argument;
+            this.then1();
+        };
+        promise.prototype.resolve=function () {
+            this.then1();
+        };
+        promise.prototype.then=function (res,rej) {
+            this.thenCach.push({resolve:resolve})
+        };
+        promise.prototype.then1=function (res) {
+
+        };
+
+    }
+    var tt=new promise(function (res, rej) {
+
+    });
+    tt.then(res=>{
+
+    })*/
+
+
+
+
+
+
+
+
+
+
+
+    if(!window.Promise) {
+        function Promise(fn) {
+            var self=this;
+            this.status = 'pending';
+            this.thenCache = [];
+            this.count = 0
+            if(!(this instanceof Promise)) {
+                throw 'Defer is a constructor and should be called width "new" keyword';
+            }
+            if(typeof fn !== 'function') {
+                throw 'Defer params must be a function';
+            }
+            //为了让传进来的函数在then后执行
+            setTimeout(function() {
+                try {
+                    fn.call(this, self.resolve.bind(self), self.reject.bind(self))
+                } catch(e) {
+                    self.reject(e);
+                }
+            }, 0);
+        }
+        Promise.prototype.resolve = function(value) {
+            this.value = value;
+            this.status = 'resolved';
+            this.triggerThen();
+        }
+        Promise.prototype.reject = function(reason) {
+            this.value = reason;
+            this.status = 'rejected';
+            this.triggerThen();
+        }
+        Promise.prototype.then = function(onResolve, onReject) {
+            this.thenCache.push({ onResolve: onResolve, onReject: onReject });
+            console.log('this', this)
+            return this;
+        }
+        Promise.prototype.catch = function(fn) {
+            if(typeof fn === 'function') {
+                this.errorHandle = fn;
+            }
+        };
+        Promise.prototype.triggerThen = function() {
+            console.log('this.thenCache', this.thenCache)
+            console.log('this.status', this.status)
+            var current = this.thenCache.shift(),
+                res;
+            console.log('current', current)
+            if(!current && this.status === 'resolved') {
+                // console.log('--11--', + new Date())
+                return this;
+            } else if(!current && this.status === 'rejected') {
+                if(this.errorHandle) {
+                    this.value = this.errorHandle.call(undefined, this.value);
+                    this.status = 'resolved';
+                    console.log('--11--', + new Date())
+                }
+                return this;
+            };
+            if(this.status === 'resolved') {
+                // console.log('--222--', + new Date())
+                res = current.onResolve;
+            } else if(this.status === 'rejected') {
+                console.log('--222--', + new Date())
+                res = current.onReject;
+            }
+            this.count ++;
+            if(typeof res === "function") {
+                try {
+                    this.value = res.call(undefined, this.value);
+                    this.status = 'resolved';
+                    console.log('-ddd--', + new Date())
+                    this.triggerThen();
+                    // console.log('this.count', this.count, + new Date())
+                } catch(e) {
+                    this.status = 'rejected';
+                    this.value = e;
+                    return this.triggerThen();
+                }
+            } else {
+                console.log('--44--')
+                this.triggerThen();
+            }
+        }
+        window.Promise = Promise;
+    }
+   Promise.prototype.finally = function (callback) {
+       let P = this.constructor;
+       return this.then(
+               value  => P.resolve(callback()).then(() => value),
+       reason => P.resolve(callback()).then(() => { throw reason })
+       );
+   };
+    var ttt=new Promise(function (resolve, reject) {
+        resolve('asc');
+
+    })
+
+    ttt.then((rrr)=>{
+        console.log(rrr);
+    })
+</script>
+</body>
+</html>
