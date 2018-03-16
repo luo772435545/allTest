@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: #222;
+            overflow: hidden;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <canvas id="canvas"></canvas>
+</div>
+<script>
+    var canvas = document.body.appendChild(document.createElement('canvas')),
+        context = canvas.getContext('2d'),
+        t = 0,
+        w, h;
+    context.globalCompositeOperation = 'lighter';
+    window.addEventListener('resize', resize, false);
+    resize();
+    animate();
+
+    function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+    }
+
+    function animate() {
+        context.clearRect(0, 0, w, h);
+        t += 0.1;
+        for (var i = 0; i < 10000; i++) {
+
+            var f = 0.05 + ((Math.sin(t * 0.00002) / Math.PI) * 0.2);
+
+            var r = (Math.min(w, h)) * (Math.cos((t + i) * f) / Math.PI * 1.5);
+            var x = Math.sin(i) * r + (canvas.width / 2);
+            var y = Math.cos(i) * r + (canvas.height / 2);
+
+            context.fillStyle = 'rgba(0,255,255,0.5)';
+            context.fillRect(x, y, 1.5, 1.5);
+        }
+        setTimeout(animate, 16);
+    }
+</script>
+</body>
+</html>

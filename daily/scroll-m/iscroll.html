@@ -10,20 +10,136 @@
         *{margin: 0;padding: 0}
         .app{height: 100%;width: 100%;}
         .scroller li{height: 30px;line-height: 30px;border-bottom: 1px solid #ddd;}
+        #wrapper {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+
+            /* Prevent native touch events on Windows */
+            -ms-touch-action: none;
+
+            /* Prevent the callout on tap-hold and text selection */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            /* Prevent text resize on orientation change, useful for web-apps */
+            -webkit-text-size-adjust: none;
+            -moz-text-size-adjust: none;
+            -ms-text-size-adjust: none;
+            -o-text-size-adjust: none;
+            text-size-adjust: none;
+        }
+
     </style>
+    <script src="../../iscroll/build/iscroll.js"></script>
+    <script type="text/javascript" src="../../iscroll/build/iscroll-probe.js"></script>
 </head>
 <body>
-<div class="app">
-    <div class="wrapper">
-        <div id="scroller">
-            <ul>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-            </ul>
-        </div>
-    </div>
+<div id="wrapper">
+    <ul>
+        <li>1545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>15454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>15454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545445454</li>
+        <li>154545454545454545454</li>
+        <li>154545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>1454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>15</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>154545454545454545454</li>
+        <li>23</li>
+        <li>23</li>
+        <li>23</li>
+        <li>23</li>
+        <li>23</li>
+        <li>23</li>
+        <li>23</li>
+        <li>23</li>
+        <li>23</li>
+        <li>23</li>
+        <li>23</li>
+        <li>23</li>
+    </ul>
 </div>
+<script>
+
+
+    var myScroll;
+    var position;
+
+    function updatePosition () {
+       console.log(this.y)
+    }
+    function updateContent() {
+        console.log(this.y)
+    }
+    function loaded () {
+        myScroll = new IScroll('#wrapper', { probeType: 3, mouseWheel: true,dataFiller: updateContent });
+        myScroll.on('scroll', updatePosition);
+        myScroll.on('scrollEnd', updatePosition);
+    }
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    loaded()
+</script>
 </body>
 </html>
