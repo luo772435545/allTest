@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 100%;
+            padding: 80px 0px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .progress-outer {
+            width: 60%; height: 12px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-enter {
+            height: inherit;
+            background: rgba(180, 160, 120, .2);
+        }
+        .progress-bg {
+            width: 5%; height: inherit;
+            border-radius: 6px;
+            background: repeating-linear-gradient(-45deg, #D9CFBB  25%, #C3B393 0, #C3B393 50%,
+            #D9CFBB 0, #D9CFBB 75%, #C3B393 0);
+            background-size: 16px 16px;
+            animation: panoramic 20s linear infinite;
+            transition: 1s width ;
+        }
+        @keyframes panoramic {
+            100%{background-position:200% 0}
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="progress-outer">  <!--更好的扩展-->
+        <div class="progress-enter">
+            <div class="progress-bg"></div>
+        </div>
+        <!-- <span>60%</span> -->
+    </div>
+    <script>
+        var pr=document.querySelector('.progress-bg');
+            var Oimg=new Image();
+            var arr=['http://192.168.1.135:6688/img/9490.png','http://192.168.1.135:6688/img/01.png','http://192.168.1.135:6688/img/02.png'];
+             var len=-1,
+                wid=0;
+            function yujia() {
+                len++;
+                Oimg.src=arr[len];
+                wid+=(100/arr.length);
+                Oimg.onload=function () {
+                    pr.style.width=wid+'%';
+                    yujia();
+                }
+            }
+        yujia()
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 100%;
+            padding: 60px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            user-select: none;
+            font: 14px / 1 Helvetica, sans-serif;
+        }
+        input[type="checkbox"] {
+            position: absolute;
+            clip: rect(0, 0, 0, 0);
+        }
+        input[type="checkbox"] + label {
+            cursor: pointer;
+            position: relative;
+            line-height: 12px;
+            user-select: none;
+        }
+        input[type="checkbox"] + label:not(:nth-of-type(1)) {
+            margin-top: 29px;
+            margin-bottom: 29px;
+        }
+        input[type="checkbox"]:checked + label{
+            color: #b4a078;
+        }
+        input[type="checkbox"]:disabled + label {
+            cursor: not-allowed;
+            color: #999;
+        }
+        input[type="checkbox"] + label::before{
+            content: "";
+            display: inline-block;
+            width: 10px; height: 10px;
+            border-radius: 2px;
+            vertical-align: top;
+            margin-right: .2em;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            transition: border-color .2s ease-in-out, background-color .2s ease-in-out;
+        }
+        input[type="checkbox"]:not(:disabled) + label:hover::before{
+            border-color: #b4a078;
+        }
+        input[type="checkbox"] + label::after{
+            content: "";
+            display: inline-block;
+            width: 3px; height: 7px;
+            border: 1px solid #fff;
+            border-top: 0;
+            border-left: 0;
+            position: absolute;
+            left: 4px; top: 1px;
+            transform: rotate(45deg) scale(0);
+            transition: all .2s ease-in-out;
+        }
+        input[type="checkbox"]:checked + label::before{
+            border-color: #b4a078 !important;
+            background-color: #b4a078;
+        }
+        input[type="checkbox"]:checked + label::after{
+            transform: rotate(45deg) scale(1);
+            transition: all .2s ease-in-out;
+        }
+        input[type="checkbox"]:disabled + label::before, input[type="checkbox"]:disabled.checked + label::before{
+            background-color: #f2f2f2;
+        }
+        input[type="checkbox"]:disabled.checked + label::after{
+            border-color: #ccc;
+            transform: rotate(45deg) scale(1);
+        }
+        input[type="radio"]{
+            position: absolute;
+            clip: rect(0, 0, 0, 0);
+        }
+        input[type="radio"] + label{
+            cursor: pointer;
+            position: relative;
+            line-height: 12px;
+            user-select: none;
+        }
+        input[type="radio"] + label:not(:nth-of-type(6)){
+            margin-top: 29px;
+            margin-bottom: 29px;
+        }
+        input[type="radio"]:disabled + label{
+            cursor: not-allowed;
+            color: #999;
+        }
+        input[type="radio"] + label::before{
+            content: "";
+            display: inline-block;
+            width: 10px; height: 10px;
+            border-radius: 8px;
+            vertical-align: top;
+            margin-right: .2em;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            transition: border-color .2s ease-in-out, background-color .2s ease-in-out;
+        }
+        input[type="radio"]:not(:disabled) + label:hover::before{
+            border-color: #b4a078;
+        }
+        input[type="radio"]:checked + label::before{
+            border-color: #b4a078 !important;
+            background-color: #b4a078;
+        }
+        input[type="radio"] + label::after{
+            content: "";
+            display: inline-block;
+            width: 4px; height: 4px;
+            background-color: #fff;
+            border-radius: 4px;
+            position: absolute;
+            left: 4px; top: 50%;
+            transform: translateY(-50%) scale(0);
+            transition: transform .2s ease-in-out;
+        }
+        input[type="radio"]:checked + label::after{
+            transform: translateY(-50%) scale(1);
+            transition: transform .2s ease-in-out;
+        }
+        input[type="radio"]:disabled + label::before, input[type="radio"]:disabled.checked + label::before{
+            background-color: #f2f2f2;
+        }
+        input[type="radio"]:disabled.checked + label::after{
+            border-color: #ccc;
+            background-color: #ccc;
+            transform: translateY(-50%) scale(1);
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <input type="checkbox" id="awesome1" checked>
+    <label for="awesome1">Awesome</label>
+    <input type="checkbox" id="awesome11">
+    <label for="awesome11">Iconfont</label>
+    <input type="checkbox" id="awesome12">
+    <label for="awesome12">Lhammer</label>
+    <input type="checkbox" id="awesome2" disabled>
+    <label for="awesome2">禁用</label>
+    <input type="checkbox" id="awesome3" disabled class="checked">
+    <label for="awesome3">选中禁用</label>
+
+    <input type="radio" id="radio0" name="radio">
+    <label for="radio0">Vue</label>
+    <input type="radio" id="radio1" name="radio" checked>
+    <label for="radio1">React</label>
+    <input type="radio" id="radio3" name="radio">
+    <label for="radio3">Angular</label>
+    <input type="radio" id="radio4" name="radio" disabled>
+    <label for="radio4">禁用</label>
+    <input type="radio" id="radio5" name="radio" disabled class="checked">
+    <label for="radio5">选中禁用</label>
+</div>
+</body>
+</html>

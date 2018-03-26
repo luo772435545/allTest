@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0;padding: 0}
+        .clp{height: 1500px;width: 100%;background-color: #999999}
+    </style>
+</head>
+<body>
+    <div class="clp"></div>
+<script>
+    var cl=document.querySelector('.clp');
+    console.log(cl);
+    cl.addEventListener('click',function (e) {
+        console.log(e);
+    })
+    cl.addEventListener('mousemove',function (e) {
+        console.log('screenY:'+e.screenY);
+        console.log('clientY:'+e.clientY);
+        console.log('pageY:'+e.pageY);
+        console.log('-----------------')
+    })
+    cl.addEventListener('touchmove',function (e) {
+        console.log(e);
+    })
+</script>
+</body>
+</html>

@@ -11,6 +11,8 @@
         .app{height: 100%;width: 100%;}
         .scroller li{height: 30px;line-height: 30px;border-bottom: 1px solid #ddd;}
         #wrapper {
+            border: 1px solid #ddd;
+            margin: 50px auto ;
             position: relative;
             width: 300px;
             height: 300px;
@@ -33,6 +35,7 @@
             -o-text-size-adjust: none;
             text-size-adjust: none;
         }
+        #wrapper ul li{height: 60px;line-height: 60px;border-bottom: 1px solid #ddd;box-sizing: border-box}
 
     </style>
     <script src="../../iscroll/build/iscroll.js"></script>
@@ -41,102 +44,78 @@
 <body>
 <div id="wrapper">
     <ul>
-        <li>1545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>15454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>15454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545445454</li>
-        <li>154545454545454545454</li>
-        <li>154545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>1454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>15</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>154545454545454545454</li>
-        <li>23</li>
-        <li>23</li>
-        <li>23</li>
-        <li>23</li>
-        <li>23</li>
-        <li>23</li>
-        <li>23</li>
-        <li>23</li>
-        <li>23</li>
-        <li>23</li>
-        <li>23</li>
-        <li>23</li>
+        <li>第一个</li>
+        <li>第2个</li>
+        <li>第3个</li>
+        <li>第3个</li>
+        <li>第3个</li>
+        <li>第3个</li>
+        <li>第3个</li>
+        <li>第3个</li>
+        <li>第3个</li>
+        <li>第3个</li>
+        <li>第3个</li>
+        <li>第3个</li>
+        <li>第7个</li>
+        <li>第6个</li>
+        <li>第4个</li>
+        <li>第3个</li>
+        <li>第3个</li>
     </ul>
 </div>
 <script>
+    var data=new Date();
+   function  format(format, date) {
+        if (!date) {
+            date = new Date();
+        }
+        var Week = ['日', '一', '二', '三', '四', '五', '六'];
+        var o = {
+            'y+': date.getYear(), // year
+            'M+': date.getMonth() + 1, // month
+            'd+': date.getDate(), // day
+            'h+': date.getHours(), // hour
+            'H+': date.getHours(), // hour
+            'm+': date.getMinutes(), // minute
+            's+': date.getSeconds(), // second
+            'q+': Math.floor((date.getMonth() + 3) / 3), // quarter
+            'S': date.getMilliseconds(), // millisecond
+            'w': Week[date.getDay()]
+        }
+        if (/(y+)/.test(format)) {
+            format = format.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+        }
+        for (var k in o) {
+
+            if (new RegExp('(' + k + ')').test(format)) {
+                format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length));
+            }
+
+        }
+        return format;
+    }
+
 
 
     var myScroll;
     var position;
 
     function updatePosition () {
-       console.log(this.y)
+
     }
+    var hei=document.querySelector('#wrapper ul li').offsetHeight;
     function updateContent() {
-        console.log(this.y)
+        var tt=Math.abs(this.y%hei);
+        if(tt<=hei/2){
+            myScroll.scrollTo(0,this.y+tt)
+        }else {
+            myScroll.scrollTo(0,this.y-(hei-tt));
+        }
     }
     function loaded () {
         myScroll = new IScroll('#wrapper', { probeType: 3, mouseWheel: true,dataFiller: updateContent });
         myScroll.on('scroll', updatePosition);
-        myScroll.on('scrollEnd', updatePosition);
+        myScroll.on('scrollEnd', updateContent);
     }
     document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
     loaded()
