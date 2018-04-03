@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0;padding: 0}
+        #progress{width: 300px;height: 300px;}
+    </style>
+</head>
+<body>
+<div id="progress" >
+
+</div>
+<script>
+    /**
+     * ==================================
+     * opts.parent 插入到哪里 一个JS元素对象
+     * opts.width 宽度 = 2* (半径+弧宽)
+     * opts.radius 半径
+     * opts.arc 弧宽
+     * opts.perent 百分比
+     * opts.color 弧渲染颜色 [底色,进度色]
+     * opts.after 绘制完成时执行函数
+     * ==================================
+     **/
+    class progress {
+        constructor(opts){
+            this.parent=opts.parent|| document.body,
+                this.width= opts.width||100,
+                this.radius= opts.radius||45,
+                this.arc= opts.arc||5,
+                this.perent=opts.perent||70,
+                this.color=['#ccc', '#4389e9'],
+                this.after=function() {},
+                this.ctx=Object,
+                this.x=0,
+                this.tox=70
+        }
+        init(){
+            let canvas=document.createElement('canvas'),
+                _this=this;
+            _this.parent.appendChild(canvas);
+            _this.ctx = canvas.getContext("2d");
+
+            _this.ctx.canvas.width = _this.width;
+            _this.ctx.canvas.height = _this.width;
+            /* if (!this.animated) return this.fill(this.perent);*/
+            // _this.fill(_this.x)
+            _this.animate(_this);
+        }
+        clearFill(){
+            let _this=this;
+            _this.ctx.clearRect(0, 0, _this.width,  _this.width)
+        }
+        fillBG(){
+            let _this=this;
+            _this.ctx.beginPath();
+            _this.ctx.lineWidth = _this.arc;
+            _this.ctx.strokeStyle = _this.color[0];
+            _this.ctx.arc(_this.width / 2, _this.width / 2, _this.radius, 0, 2 * Math.PI);
+            _this.ctx.stroke();
+        }
+        fillArc(){
+            let _this=this;
+            let start=125 * Math.PI / 180;
+            let end=(_this.x*2.9+125) * Math.PI / 180;
+            _this.ctx.beginPath();
+            _this.ctx.lineWidth = _this.arc;
+            _this.ctx.strokeStyle = _this.color[1];
+            _this.ctx.arc(_this.width / 2, _this.width / 2, _this.radius, start,end );
+            _this.ctx.stroke();
+        }
+        fill(a,b){
+            let _this=this;
+            _this.fillBG();
+            _this.fillArc();
+        }
+        animate(th){
+            let _this=th||this;
+            if (_this.x++ > _this.perent) return _this.after && _this.after();
+            setTimeout(function () {
+                _this.clearFill();
+                _this.fill(_this.x);
+                _this.animate(_this)
+            }, 1000/60);
+        }
+        aniInit(th){
+            //清空
+            let _this=th||this;
+            _this.x--;
+            if(_this.x<=5){
+                return
+            }
+            setTimeout(function () {
+                _this.clearFill();
+                _this.fill(_this.x);
+                _this.aniInit(_this)
+            }, 1000/60);
+        }
+
+    }
+    var ttt=new progress({
+        parent:document.getElementById('progress'),
+        animated: true,
+        width: document.getElementById('progress').clientWidth,
+        radius: document.getElementById('progress').clientWidth/2.2,
+        arc: 8,
+        perent: 60,
+        color: ['#ccc','#4389e9'],
+        textColor: '#f30',
+        textSize: '40px',
+        after: function(){
+
+        }
+    });
+
+    ttt.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <canvas class="progress" id="progress" width="420" height="360"></canvas>
+<script>
+
+  /*  var circleLoad = function(opt) {
+        this.obj = opt.obj;
+        this.times = opt.times || 30;
+        this.precent = opt.precent || 50;
+        this.width = opt.width || 100;
+        this.color = opt.color;
+        this.callBack = opt.callBack || false;
+        this.objview = opt.objview;
+        this.haxload = 0;
+        this.loading = false;
+        this.circle();
+    }
+    circleLoad.prototype.config = function() {
+        var thisp = this,
+            loaded = thisp.haxload * 2 / 100 * Math.PI,
+            cw = thisp.width,
+            hcw = thisp.width / 2;
+        lp = thisp.objview;
+        thisp.obj.clearRect(0, 0, cw, cw);
+        thisp.obj.beginPath();
+        thisp.obj.arc(hcw, hcw, hcw - 2, 0, loaded, false);
+        thisp.obj.lineWidth = 4;
+        thisp.obj.strokeStyle = thisp.color;
+        thisp.obj.stroke();
+    }
+    circleLoad.prototype.circle = function() {
+        var thisp = this,
+            i = 0,
+            draw = null
+        thisp.loading = true;
+        draw = setInterval(function() {
+            if (thisp.haxload > 100) {
+                thisp.loading = false;
+                clearInterval(draw);
+                draw = null;
+                return true;
+            }
+            if (i <= thisp.precent) {
+                thisp.config()
+                i++;
+                thisp.haxload += 1;
+                if (i == thisp.precent + 1) {
+                    thisp.callBack();
+                }
+            } else {
+                clearInterval(draw);
+                draw = null;
+            }
+        }, thisp.times);
+    }
+    var cc=new circleLoad(document.getElementById('progress').getContext("2d"))*/
+
+
+
+    /*class progress{
+        constructor(el){
+            this.el=el;
+            this.width=el.width;
+            this.height=el.height;
+            this.color='#3367b7';
+            this.lineWid=5;
+            this.all=360;
+            this.newDeg=12;
+        }
+        init(){
+            console.log(this.el.width);
+
+            var _this=this
+           var _ctx= this.el.getContext('2d')
+            _ctx.beginPath();
+            _ctx.strokeStyle = _this.color;  //图形边框的填充颜色
+            _ctx.lineWidth = _this.lineWid;  //用宽度为 5 像素的线条来绘制矩形：
+            _ctx.arc(_this.width,_this.width,50,0.75*Math.PI,((1.5/_this.all)*_this.newDeg+0.75)*Math.PI);
+            _ctx.stroke();
+        }
+
+    }
+    var pro=new progress(document.getElementById('progress'));
+    pro.init();
+*/
+    var d=2-0.5;
+    var deg=((d/360)*200+0.75);
+    var c=document.getElementById("progress");
+    var ctx=c.getContext("2d");
+    var wid=c.width
+     console.log(wid*0.011904);
+    ctx.beginPath();
+    ctx.strokeStyle = "#3367b7";
+    ctx.lineWidth =  wid*0.011904;
+    ctx.arc(wid/1.99052,wid/1.99052,wid/2.1538461,0.75*Math.PI,deg*Math.PI);
+    ctx.stroke();
+    setTimeout(function () {
+        var deg=((d/360)*300+0.75);
+        ctx.clearRect(0,0,wid,wid);
+        ctx.beginPath();
+        ctx.strokeStyle = "#3367b7";
+        ctx.lineWidth =  wid*0.011904;
+        ctx.arc(wid/1.99052,wid/1.99052,wid/2.1538461,0.75*Math.PI,deg*Math.PI);
+        ctx.stroke();
+    },300)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

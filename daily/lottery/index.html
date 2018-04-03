@@ -31,14 +31,14 @@
             this.timer=0;//setTimeOut timer
             this.all=document.getElementById('oid').getElementsByTagName('li').length; //奖
             this.dom=document.getElementById('oid').getElementsByTagName('li');
-             this.speedEnd=300;//最后
+            this.speedEnd=300;//最后
         }
         init(){
             this.zhong>this.all?this.zhong=this.all:'';
             this.roll();
         }
         roll(){
-            let _this=clcl;
+            let _this=this;
             _this.nub++;
             clearTimeout(_this.timer);
             _this.nub>(_this.minNub*_this.all)?_this.speed+=_this.speedEnd:'';

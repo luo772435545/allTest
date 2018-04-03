@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{width: 60px;height: 60px;background-color: rosybrown;margin: 10px;}
+    </style>
+</head>
+<body>
+<ul id="oid">
+    <li data-id="0">1</li>
+    <li data-id="1">2</li>
+    <li data-id="4">3</li>
+    <li data-id="3">4</li>
+    <li data-id="2">5</li>
+    <li data-id="5">6</li>
+    <li data-id="6">7</li>
+    <li data-id="7">8</li>
+</ul>
+<div class="btn">按钮</div>
+<script>
+
+    var btn=document.querySelector('.btn');
+    class dep {
+        constructor(){
+            this.nub=0;//转动次数
+            this.speed=300;//速度
+            this.index=-1;//当前哪个
+            this.timer=0;//setTimeOut timer
+            this.all=document.getElementById('oid').getElementsByTagName('li').length; //奖
+            this.dom=document.getElementById('oid').getElementsByTagName('li');
+            this.end=false //是否转动
+        }
+        init(){
+            this.roll();
+        }
+        suan(){
+            //算法
+            let _this=this;
+            const a=Array.from({length:_this.all},(s,x)=>x);
+            for (let i=0;i<a.length-2;i++){
+                let random=Math.random()*(a.length-i);
+                let j=i+Math.floor(random);
+                [a[i],a[j]]=[a[j],a[i]]
+            }
+            a.forEach((item,index)=>{
+                clcl.dom[index].setAttribute('data-id',item)
+            })
+        }
+        roll(){
+            let _this=clcl;
+            if(_this.end){
+                return ;
+            }
+            _this.nub++;
+            _this.index=_this.nub%_this.all;
+            clearTimeout(_this.timer);
+            for(let i=0;i<clcl.dom.length;i++){
+                _this.dom[i].style.backgroundColor='rosybrown';
+            }
+            for(let i=0;i<clcl.dom.length;i++){
+                if(_this.index==_this.dom[i].getAttribute('data-id')){
+                    _this.dom[i].style.backgroundColor='bisque'
+                }
+            }
+            _this.timer=setTimeout(clcl.roll,_this.speed)
+        }
+        endFn(){
+            this.end=true;
+        }
+    }
+    var clcl=new dep();
+    clcl.suan();
+    clcl.init();
+    btn.addEventListener('click',function () {
+        if(clcl.end){
+            clcl.end=false;
+            clcl.suan();
+            clcl.init();
+        }else {
+            clcl.endFn();
+            console.log(clcl.nub%clcl.all)
+        }
+
+    })
+
+
+
+</script>
+</body>
+</html>
